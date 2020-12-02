@@ -1,4 +1,4 @@
-# electron-quick-start
+# electron-todolist
 
 ## Table of Contents
 
@@ -14,3 +14,4 @@ Electron, Node.js todo list app.
 
 ## Usage <a name = "usage"></a>
 
+Add notes about how to use the system.
