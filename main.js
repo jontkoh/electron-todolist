@@ -2,21 +2,31 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
+const defaultProps = {
+  width: 1200,
+  height: 1000,
+  show: false,
+  webPreferences: {
+    nodeIntegration: true
+  }
+}
+
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
+    ...defaultProps
+  });
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('./src/index.html');
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools();
+
+  // gracefully show to avoid flicker
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show();
+  })
 }
 
 // This method will be called when Electron has finished
